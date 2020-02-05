@@ -6,6 +6,7 @@ class Collections {
     def secMax(list: List[Int], maxVal: Int, secMaxVal: Int): Any = {
       list match {
         case Nil => "empty list"
+	case first:: Nil if maxVal==secMaxVal&&first==maxVal => "second max not found"
         case first :: Nil if first < secMaxVal || first == maxVal => secMaxVal
         case first :: Nil if first < maxVal && first >= secMaxVal => first
         case first :: Nil if first > maxVal => maxVal
