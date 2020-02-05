@@ -1,6 +1,25 @@
 package com.knoldus
 
 class Collections {
+  def findSecMax(list: List[Int]):Any= {
+    @scala.annotation.tailrec
+    def secMax(list: List[Int], maxVal: Int, secMaxVal: Int): Any = {
+      list match {
+        case Nil => "empty list"
+        case first :: Nil if first < secMaxVal || first == maxVal => secMaxVal
+        case first :: Nil if first < maxVal && first >= secMaxVal => first
+        case first :: Nil if first > maxVal => maxVal
+        case first :: rest if first > maxVal => secMax(rest, first, maxVal)
+        case first :: rest if first < maxVal && first > secMaxVal => secMax(rest, maxVal, first)
+        case first :: rest if first < maxVal && first == secMaxVal => secMax(rest, maxVal, secMaxVal)
+        case first :: rest if first < secMaxVal || first == maxVal => secMax(rest, maxVal, secMaxVal)
+      }
+    }
+    secMax(list,list.head,list(1))
+  }
+
+
+
 
   def kth(list: List[Int], index:Int):Any= {
     @scala.annotation.tailrec
@@ -132,7 +151,8 @@ object Collections extends App{
   println(obj.firstEven(list3))
   val list4 = List(1, 1, 1, 1, 2, 3, 3, 1, 1, 4, 5, 5, 5, 5)
   println(obj.compress(list4))
-    println(obj.duplicate(List(1, 2, 3, 3, 4)))
-    println(obj.drop(List(1,2,3,4,5,6,7,8,9,10,11),3))
-
+  println(obj.duplicate(List(1, 2, 3, 3, 4)))
+  println(obj.drop(List(1,2,3,4,5,6,7,8,9,10,11),3))
+  val l = List (5,6,2,3,1)
+  obj.findSecMax(l)
 }
