@@ -11,17 +11,14 @@ class MapCollections {
 
   def changeMap (map: Map[Int, List[String]]): Map[Int, List[String]]= {
 
-    val newMap = Map[Int, List[String]]()
-
-    map.foldLeft(newMap){
-      (a:Map[Int, List[String]], elem: (Int, List[String]))=> if (elem._1%2==0){
-        a++ Map(elem._1-> elem._2.map(x=> x.head+"even"))
-      }
-      else {
-        a++ Map(elem._1-> elem._2.map(x=> x.head+"odd"))
-      }
-    }
-  }
+	map.foldLeft(Map[Int, List[String]]()){
+		(acc, elem)=> if (elem._1%2==0){
+			acc++ Map(elem._1-> elem._2.map(x=> x.head+"even"))
+		}
+		else {
+			acc++ Map(elem._1-> elem._2.map(x=> x.head+"odd"))
+		}
+	}
 
 
   def last(list: List[Int]):Any = {
